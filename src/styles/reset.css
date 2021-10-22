@@ -3,6 +3,16 @@
    License: none (public domain)
 */
 
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
 html,
 body,
 div,
