@@ -1,8 +1,8 @@
 import { API } from '../api'
 
-const checkUser = (user: any) => {
+const checkUser = (user: IUser) => {
   return new Promise(async (resolve, reject) => {
-    const checkUser: any[] = await API.get(`/users?username=${user.username}`)
+    const checkUser: IUser[] = await API.get(`/users?username=${user.username}`)
     if (checkUser.length) {
       reject('Error')
     }
@@ -11,5 +11,19 @@ const checkUser = (user: any) => {
   })
 }
 
-export const registerUser = async (user: any) =>
+export const registerUser = async (user: IUser) =>
   checkUser(user).then(() => API.post('/users', user))
+
+export const loginUser = async (user: IUser) => {
+  return new Promise(async (resolve, reject) => {
+    const findUser: IUser[] = await API.get(
+      `/users?username=${user.username}&password=${user.password}`
+    )
+
+    if (!findUser.length) {
+      reject()
+    }
+
+    resolve(findUser)
+  })
+}

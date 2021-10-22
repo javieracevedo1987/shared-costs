@@ -1,9 +1,11 @@
 import React from 'react'
-import styles from './LoginForm.module.css'
+import useAuth from '../../hooks/useAuth'
+import { loginUser } from '../../services/users/userService'
 
 export const LoginForm: React.FC = () => {
   const [username, setUsername] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
+  const { saveUser } = useAuth()
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -17,8 +19,15 @@ export const LoginForm: React.FC = () => {
 
   const handleSubmit = (form: React.FormEvent) => {
     form.preventDefault()
-    console.log('FORM LOGIN !!!', { username, password })
+
+    loginUser({ username, password })
+      .then((user) => {
+        saveUser(user)
+      })
+      .catch((err) => console.log('USUARIO NO ENCONTRADO', err))
   }
+
+  const isValidForm = () => !!username && !!password
 
   return (
     <>
@@ -44,7 +53,9 @@ export const LoginForm: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <button className="button">LOGIN!</button>
+          <button disabled={!isValidForm()} className="button">
+            LOGIN!
+          </button>
         </div>
       </form>
     </>

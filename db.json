@@ -1,5 +1,11 @@
 {
-  "users": [],
+  "users": [
+    {
+      "username": "a",
+      "password": "a",
+      "id": 1
+    }
+  ],
   "groups": [],
   "usergroup": [],
   "expenses": []

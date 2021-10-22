@@ -5,7 +5,7 @@ import styles from './Login.module.css'
 
 export const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true)
-  const handleToggleForm = (event: React.MouseEventHandler<HTMLDivElement>) => {
+  const handleToggleForm = (event: any) => {
     setIsLogin(!isLogin)
   }
 
