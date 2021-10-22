@@ -10,3 +10,8 @@
 .button:hover {
   background-color: var(--cerulean-crayola);
 }
+
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

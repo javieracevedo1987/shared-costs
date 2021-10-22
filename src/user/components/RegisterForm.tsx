@@ -1,9 +1,11 @@
 import React from 'react'
+import { registerUser } from '../../services/users/userService'
 
 export const RegisterForm: React.FC = () => {
   const [username, setUsername] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
   const [passwordConfirm, setPasswordConfirm] = React.useState<string>('')
+  const [errorMsg, setErrorMsg] = React.useState<string>('')
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -23,13 +25,20 @@ export const RegisterForm: React.FC = () => {
   }
 
   const handleSubmit = (form: React.FormEvent) => {
+    if (!isValidForm()) return
     form.preventDefault()
-    console.log('FORM REGISTER !!!', { username, password, passwordConfirm })
+    registerUser({ username, password, passwordConfirm })
+      .then(() => console.log('USUARIO REGISTRADO'))
+      .catch(() => setErrorMsg('Ese usuario ya existe!'))
   }
+
+  const isValidForm = () => !!username && !!password && !!passwordConfirm
 
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <span className="errorMsg">{errorMsg}</span>
+
         <div className="form-group">
           <input
             type="text"
@@ -61,7 +70,9 @@ export const RegisterForm: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <button className="button">REGISTER!</button>
+          <button disabled={!isValidForm()} className="button">
+            REGISTER!
+          </button>
         </div>
       </form>
     </>
