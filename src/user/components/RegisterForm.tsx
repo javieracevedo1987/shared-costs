@@ -27,7 +27,7 @@ export const RegisterForm: React.FC = () => {
   const handleSubmit = (form: React.FormEvent) => {
     if (!isValidForm()) return
     form.preventDefault()
-    registerUser({ username, password, passwordConfirm })
+    registerUser({ username, password })
       .then(() => console.log('USUARIO REGISTRADO'))
       .catch(() => setErrorMsg('Ese usuario ya existe!'))
   }
