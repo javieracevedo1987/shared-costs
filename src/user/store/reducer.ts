@@ -10,6 +10,10 @@ const initialState: IUserState = {
 export const userReducer = produce(
   (draft: IUserState = initialState, { type, payload }) => {
     switch (type) {
+      case USER_ACTIONS.REMOVE_USER: {
+        draft.user = null
+        return draft
+      }
       case USER_ACTIONS.LOGIN_USER_SUCCESS: {
         draft.user = payload
         return draft

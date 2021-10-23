@@ -4,6 +4,7 @@ export const USER_ACTIONS = {
   LOGIN_USER: 'LOGIN_USER',
   LOGIN_USER_SUCCESS: 'LOGIN_USER_SUCCESS',
   LOGIN_USER_FAILURE: 'LOGIN_USER_FAILURE',
+  REMOVE_USER: 'REMOVE_USER',
 }
 
 export function loginUserSuccess(user: IUser) {
@@ -17,6 +18,12 @@ export function loginUserFailure(error: string) {
   return {
     type: USER_ACTIONS.LOGIN_USER_FAILURE,
     payload: error,
+  }
+}
+
+export function removeUser() {
+  return {
+    type: USER_ACTIONS.REMOVE_USER,
   }
 }
 
