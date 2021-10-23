@@ -1,4 +1,4 @@
-import { loginUser } from '../../services/users/userService'
+import { loginUser } from '../../../services/users/userService'
 
 export const USER_ACTIONS = {
   LOGIN_USER: 'LOGIN_USER',
@@ -29,7 +29,7 @@ export function removeUser() {
 
 export const loginUserAsync = (user: IUser) => {
   return (dispatch: any) => {
-    loginUser(user)
+    return loginUser(user)
       .then((user) => {
         dispatch(loginUserSuccess(user))
       })

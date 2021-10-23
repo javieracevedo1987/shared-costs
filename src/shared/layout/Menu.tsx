@@ -3,10 +3,10 @@ import useAuth from '../../hooks/useAuth'
 import styles from './Menu.module.css'
 
 export const Menu: React.FC = ({ children }) => {
-  const { removeUser } = useAuth()
+  const { clearUser } = useAuth()
 
   const handleLogout = () => {
-    removeUser()
+    clearUser()
   }
 
   return (

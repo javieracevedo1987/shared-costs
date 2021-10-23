@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUserAsync } from '../store/actions'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { RootState } from '../../app/store'
-import useAuth from '../../hooks/useAuth'
+import { RootState } from '../../../app/store'
+import useAuth from '../../../hooks/useAuth'
 
 export const LoginForm: React.FC = () => {
   const [username, setUsername] = React.useState<string>('')
@@ -14,6 +14,13 @@ export const LoginForm: React.FC = () => {
   const selectorUser = useSelector((state: RootState) => state.user.user)
   const history = useHistory()
   const { setUser } = useAuth()
+
+  useEffect(() => {
+    if (selectorUser) {
+      setUser(selectorUser)
+      history.push('/groups')
+    }
+  }, [setUser, history, selectorUser])
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -29,11 +36,6 @@ export const LoginForm: React.FC = () => {
     form.preventDefault()
     const user = { username, password }
     dispatch(loginUserAsync(user))
-
-    if (selectorUser) {
-      setUser(selectorUser)
-      history.push('/groups')
-    }
   }
 
   const isValidForm = () => !!username && !!password

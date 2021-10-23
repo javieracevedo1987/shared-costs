@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerUser } from '../../services/users/userService'
+import { registerUser } from '../../../services/users/userService'
 
 export const RegisterForm: React.FC = () => {
   const [username, setUsername] = React.useState<string>('')
