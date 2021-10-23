@@ -14,7 +14,7 @@ const checkUser = (user: IUser) => {
 export const registerUser = async (user: IUser) =>
   checkUser(user).then(() => API.post('/users', user))
 
-export const loginUser = async (user: IUser) => {
+export const loginUser = async (user: IUser): Promise<IUser> => {
   return new Promise(async (resolve, reject) => {
     const findUser: IUser[] = await API.get(
       `/users?username=${user.username}&password=${user.password}`
@@ -24,6 +24,6 @@ export const loginUser = async (user: IUser) => {
       reject()
     }
 
-    resolve(findUser)
+    resolve(findUser[0])
   })
 }

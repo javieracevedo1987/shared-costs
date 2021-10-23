@@ -9,6 +9,6 @@ export const Menu: React.FC = ({ children }) => (
         </li>
       </ul>
     </nav>
-    {children}
+    <main>{children}</main>
   </>
 )

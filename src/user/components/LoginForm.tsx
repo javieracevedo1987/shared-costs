@@ -1,11 +1,19 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { loginUserAsync } from '../store/actions'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { RootState } from '../../app/store'
 import useAuth from '../../hooks/useAuth'
-import { loginUser } from '../../services/users/userService'
 
 export const LoginForm: React.FC = () => {
   const [username, setUsername] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
-  const { saveUser } = useAuth()
+
+  const dispatch = useDispatch()
+  const selectorUser = useSelector((state: RootState) => state.user.user)
+  const history = useHistory()
+  const { setUser } = useAuth()
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -19,12 +27,13 @@ export const LoginForm: React.FC = () => {
 
   const handleSubmit = (form: React.FormEvent) => {
     form.preventDefault()
+    const user = { username, password }
+    dispatch(loginUserAsync(user))
 
-    loginUser({ username, password })
-      .then((user) => {
-        saveUser(user)
-      })
-      .catch((err) => console.log('USUARIO NO ENCONTRADO', err))
+    if (selectorUser) {
+      setUser(selectorUser)
+      history.push('/groups')
+    }
   }
 
   const isValidForm = () => !!username && !!password
