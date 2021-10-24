@@ -9,10 +9,19 @@ function useAuth() {
   const dispatch = useDispatch()
 
   const setUser = (user: any) => {
-    localStorage.setItem(AUTH_KEY, JSON.stringify(user))
+    const { password, ...restUser } = user // Remove password
+    localStorage.setItem(AUTH_KEY, JSON.stringify(restUser))
   }
 
-  const getUser = () => localStorage.getItem(AUTH_KEY) || ''
+  const getUser = () => {
+    const user = localStorage.getItem(AUTH_KEY)
+
+    if (user) {
+      return JSON.parse(user)
+    }
+
+    return null
+  }
 
   const clearUser = () => {
     localStorage.removeItem(AUTH_KEY)
