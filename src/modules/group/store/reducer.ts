@@ -7,9 +7,13 @@ const initialState: IGroupState = {
   groups: [],
 }
 
-export const userReducer = produce(
+export const groupReducer = produce(
   (draft: IGroupState = initialState, { type, payload }) => {
     switch (type) {
+      case GROUP_ACTIONS.GET_GROUPS_SUCCESS: {
+        draft.groups = payload
+        return draft
+      }
       default: {
         return draft
       }

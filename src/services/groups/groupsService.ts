@@ -1,6 +1,6 @@
 import { API } from '../api'
 
-export const sendGroup = async (group: string) => {
+export const addGroup = async (group: string) => {
   try {
     const groupAdded: IGroup = await API.post('/groups', { name: group })
     const userGroup: IUserGroup = await API.post('/usergroup', {
@@ -13,4 +13,23 @@ export const sendGroup = async (group: string) => {
   }
 }
 
-export const fetchGroups = async () => await API.get('/groups')
+export const getGroups = async (user: IUser): Promise<IGroup[] | undefined> => {
+  try {
+    const userGroups: IUserGroup[] = await API.get(
+      `/usergroup?userID=${user.id}`
+    )
+    const groups: IGroup[] = await API.get('/groups')
+    const userGroupMatch: IGroup[] = userGroups.reduce((acc, val) => {
+      const hasGroup = groups.find((group) => group.id === val.groupID)
+
+      if (hasGroup) {
+        acc.push(hasGroup as never)
+      }
+
+      return acc
+    }, [])
+    return userGroupMatch
+  } catch (error) {
+    console.error(error)
+  }
+}

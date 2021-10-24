@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { loginUserAsync } from '../../store/actions'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { RootState } from '../../../../app/store'
 import useAuth from '../../../../hooks/useAuth'
 import styles from './LoginForm.module.css'
 
@@ -12,7 +11,7 @@ export const LoginForm: React.FC = () => {
   const [password, setPassword] = React.useState<string>('')
 
   const dispatch = useDispatch()
-  const selectorUser = useSelector((state: RootState) => state.user.user)
+  const selectorUser = useSelector((state: IRootState) => state.user.user)
   const history = useHistory()
   const { setUser } = useAuth()
 

@@ -10,6 +10,7 @@ interface IGroup {
 }
 
 interface IUserGroup {
-  userID: string
-  groupID: string
+  id?: number
+  userID: number
+  groupID: number
 }

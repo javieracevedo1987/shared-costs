@@ -4,9 +4,52 @@
       "username": "a",
       "password": "a",
       "id": 1
+    },
+    {
+      "username": "b",
+      "password": "b",
+      "id": 2
     }
   ],
-  "groups": [],
-  "usergroup": [],
+  "groups": [
+    {
+      "name": "asdsadsad",
+      "id": 1
+    },
+    {
+      "name": "otro",
+      "id": 2
+    },
+    {
+      "name": "anothermore",
+      "id": 3
+    },
+    {
+      "name": "asdasdsad",
+      "id": 4
+    }
+  ],
+  "usergroup": [
+    {
+      "userID": 1,
+      "groupID": 1,
+      "id": 1
+    },
+    {
+      "userID": 1,
+      "groupID": 2,
+      "id": 2
+    },
+    {
+      "userID": 1,
+      "groupID": 3,
+      "id": 3
+    },
+    {
+      "userID": 1,
+      "groupID": 4,
+      "id": 4
+    }
+  ],
   "expenses": []
 }
