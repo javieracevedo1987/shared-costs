@@ -1,11 +1,27 @@
-import React from 'react'
-import { registerUser } from '../../../services/users/userService'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginUserAsync } from '../../store/actions'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { RootState } from '../../../../app/store'
+import useAuth from '../../../../hooks/useAuth'
+import styles from './LoginForm.module.css'
 
-export const RegisterForm: React.FC = () => {
+export const LoginForm: React.FC = () => {
   const [username, setUsername] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
-  const [passwordConfirm, setPasswordConfirm] = React.useState<string>('')
-  const [errorMsg, setErrorMsg] = React.useState<string>('')
+
+  const dispatch = useDispatch()
+  const selectorUser = useSelector((state: RootState) => state.user.user)
+  const history = useHistory()
+  const { setUser } = useAuth()
+
+  useEffect(() => {
+    if (selectorUser) {
+      setUser(selectorUser)
+      history.push('/groups')
+    }
+  }, [setUser, history, selectorUser])
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -17,28 +33,17 @@ export const RegisterForm: React.FC = () => {
     setPassword(value)
   }
 
-  const handlePasswordConfirm = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value
-    setPasswordConfirm(value)
-  }
-
   const handleSubmit = (form: React.FormEvent) => {
-    if (!isValidForm()) return
     form.preventDefault()
-    registerUser({ username, password })
-      .then(() => console.log('USUARIO REGISTRADO'))
-      .catch(() => setErrorMsg('Ese usuario ya existe!'))
+    const user = { username, password }
+    dispatch(loginUserAsync(user))
   }
 
-  const isValidForm = () => !!username && !!password && !!passwordConfirm
+  const isValidForm = () => !!username && !!password
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <span className="errorMsg">{errorMsg}</span>
-
         <div className="form-group">
           <input
             type="text"
@@ -60,18 +65,11 @@ export const RegisterForm: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <input
-            type="password"
-            name="passwordConfirm"
-            value={passwordConfirm}
-            placeholder="Password confirm"
-            onChange={handlePasswordConfirm}
-          />
-        </div>
-
-        <div className="form-group">
-          <button disabled={!isValidForm()} className="button">
-            REGISTER!
+          <button
+            disabled={!isValidForm()}
+            className={`button ${styles.buttonLogin}`}
+          >
+            LOGIN!
           </button>
         </div>
       </form>
