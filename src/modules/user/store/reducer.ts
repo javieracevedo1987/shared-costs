@@ -3,7 +3,6 @@ import { USER_ACTIONS } from './actions'
 
 const initialState: IUserState = {
   user: null,
-  selectedGroup: 0,
   error: '',
 }
 

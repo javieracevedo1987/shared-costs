@@ -7,21 +7,21 @@ export const USER_ACTIONS = {
   REMOVE_USER: 'REMOVE_USER',
 }
 
-export function loginUserSuccess(user: IUser) {
+export function loginUserSuccess(user: IUser): ActionPayload {
   return {
     type: USER_ACTIONS.LOGIN_USER_SUCCESS,
     payload: user,
   }
 }
 
-export function loginUserFailure(error: string) {
+export function loginUserFailure(error: string): ActionPayload {
   return {
     type: USER_ACTIONS.LOGIN_USER_FAILURE,
     payload: error,
   }
 }
 
-export function removeUser() {
+export function removeUser(): ActionPayload {
   return {
     type: USER_ACTIONS.REMOVE_USER,
   }

@@ -6,6 +6,5 @@ interface IUser {
 
 interface IUserState {
   user: IUser | null
-  selectedGroup: number
   error: string
 }

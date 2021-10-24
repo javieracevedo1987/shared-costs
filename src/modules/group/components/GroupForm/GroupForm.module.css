@@ -1,0 +1,9 @@
+.groupForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.groupForm button {
+  width: 100px;
+}

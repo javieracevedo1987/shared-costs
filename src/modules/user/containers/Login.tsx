@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { LoginForm } from '../components/LoginForm'
-import { RegisterForm } from '../components/RegisterForm'
+import { LoginForm } from '../components/LoginForm/LoginForm'
+import { RegisterForm } from '../components/RegisterForm/RegisterForm'
 import styles from './Login.module.css'
 
 export const Login: React.FC = () => {
