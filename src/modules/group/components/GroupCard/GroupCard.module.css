@@ -1,0 +1,41 @@
+.groupCard {
+  height: 150px;
+  width: 250px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.header {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background-color: var(--blue-sapphire);
+  height: 100px;
+  width: 100%;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 20px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header:hover {
+  background-color: var(--cerulean-crayola);
+}
+
+.body {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
