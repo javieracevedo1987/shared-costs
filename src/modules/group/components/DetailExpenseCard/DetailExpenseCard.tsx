@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './DetailExpenseCard.module.css'
 
 interface DetailExpenseCardProps {
   expense: IExpense
@@ -8,12 +9,12 @@ export const DetailExpenseCard: React.FC<DetailExpenseCardProps> = ({
   expense,
 }) => {
   return (
-    <article key={expense.id}>
+    <article key={expense.id} className={styles.detailExpenseCard}>
       <div>
-        USER ID {expense.userID} - {expense.amount}
+        <span>USER: {expense.userID}</span> <span>{expense.amount} €</span>
       </div>
       <div>
-        {expense.description} - {expense.createdDate}
+        <span>{expense.description}</span> <span>{expense.createdDate}</span>
       </div>
     </article>
   )

@@ -6,6 +6,7 @@ import { ModalBox } from '../../../../shared/components/ModalBox/ModalBox'
 import { DetailExpenseForm } from '../../components/DetailExpenseForm/DetailExpenseForm'
 import { DetailExpenseList } from '../../components/DetailExpenseList/DetailExpenseList'
 import { addExpenseAsync, getExpensesAsync } from '../../store/actions'
+import styles from './GroupDetail.module.css'
 
 export const GroupDetail: React.FC = () => {
   const { id: groupID } = useParams<{ id: string }>()
@@ -44,8 +45,8 @@ export const GroupDetail: React.FC = () => {
   }
 
   return (
-    <div className="groupDetail">
-      <div className="options">
+    <div className={styles.groupDetail}>
+      <div className={styles.options}>
         <button onClick={handleExpense} className="button">
           Add expense
         </button>
