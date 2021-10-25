@@ -5,6 +5,7 @@ const initialState: IGroupState = {
   selectedGroup: null,
   error: null,
   groups: [],
+  expenses: [],
 }
 
 export const groupReducer = produce(
@@ -12,6 +13,10 @@ export const groupReducer = produce(
     switch (type) {
       case GROUP_ACTIONS.GET_GROUPS_SUCCESS: {
         draft.groups = payload
+        return draft
+      }
+      case GROUP_ACTIONS.GET_EXPENSES_SUCCESS: {
+        draft.expenses = payload
         return draft
       }
       default: {

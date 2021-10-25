@@ -1,7 +1,8 @@
 interface IGroupState {
   selectedGroup: number | null
   error: any
-  groups: Group[]
+  groups: IGroup[]
+  expenses: IExpense[]
 }
 
 interface IGroup {

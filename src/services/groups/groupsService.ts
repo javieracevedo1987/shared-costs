@@ -33,3 +33,22 @@ export const getGroups = async (user: IUser): Promise<IGroup[] | undefined> => {
     console.error(error)
   }
 }
+
+export const addExpense = async (expense: IExpense) => {
+  try {
+    return await API.post('/expenses', expense)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getExpenses = async (
+  groupID: number,
+  userID: number
+): Promise<IExpense[] | undefined> => {
+  try {
+    return await API.get(`/expenses?groupID=${groupID}&userID=${userID}`)
+  } catch (error) {
+    console.error(error)
+  }
+}

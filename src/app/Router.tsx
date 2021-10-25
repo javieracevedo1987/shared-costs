@@ -1,7 +1,7 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Menu } from '../shared/layout/Menu'
 import { Login } from '../modules/user/containers/Login'
-import { GroupDetail } from '../modules/group/containers/GroupDetail'
+import { GroupDetail } from '../modules/group/containers/GroupDetail/GroupDetail'
 import { Groups } from '../modules/group/containers/Groups/Groups'
 import useAuth from '../hooks/useAuth'
 
